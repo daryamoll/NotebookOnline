@@ -22,21 +22,32 @@ class UsersViewController: UIViewController {
         return tableView
     }()
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         self.title = "Users"
         setLayout()
-        apiController.getUsers { (error) in
-            if let error = error {
-                print("Error performing task: \(error.localizedDescription)")
-            }
+        apiController.getUsers { result in
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                switch result {
+                    case .success(let data):
+                        self.tableView.reloadData()
+                    case .failure(let error):
+                        self.tableView.reloadData()
+                }
             }
         }
     }
+    
+    
+//    { (error) in
+//        if let error = error {
+//            print("Error performing task: \(error.localizedDescription)")
+//        }
+//            self.tableView.reloadData()
+//    }
     
     func setLayout() {
         view.addSubview(tableView)
@@ -70,6 +81,8 @@ extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let profileViewController = ProfileViewController()
         let user = apiController.users[indexPath.row]
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\(user)")
+        profileViewController.user = user
         profileViewController.configureLabels(user: user)
         navigationController?.pushViewController(profileViewController, animated: true)
     }

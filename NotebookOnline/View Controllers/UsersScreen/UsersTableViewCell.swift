@@ -22,7 +22,7 @@ class UsersTableViewCell: UITableViewCell {
         label.font = Font.regular20.font
         return label
     }()
-    
+        
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints()
@@ -38,11 +38,12 @@ class UsersTableViewCell: UITableViewCell {
     }
     
     func configureCell(user: User) {
-        guard let imageData = try? Data(contentsOf: user.picture.thumbnail) else { print("Error receving user's image")
+        nameLabel.text = user.name.first + " " + user.name.last
+        
+        guard let imageData = try? Data(contentsOf: user.picture.large) else {
             return
         }
         userImage.image = UIImage(data: imageData)
-        nameLabel.text = user.name.first + " " + user.name.last
     }
 }
 

@@ -13,6 +13,10 @@
 		43166CAE2865F8D3001F405C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 43166CAD2865F8D3001F405C /* Assets.xcassets */; };
 		43166CB12865F8D3001F405C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43166CAF2865F8D3001F405C /* LaunchScreen.storyboard */; };
 		43166CBB2865FF51001F405C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43166CBA2865FF51001F405C /* User.swift */; };
+		43492658286C604800936060 /* NotebookOnline.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43492656286C604800936060 /* NotebookOnline.xcdatamodeld */; };
+		43B14506286D7F9E005C560E /* UserPicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B14505286D7F9E005C560E /* UserPicture.swift */; };
+		43B1450C286DB0FD005C560E /* UserCD+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1450A286DB0FD005C560E /* UserCD+CoreDataClass.swift */; };
+		43B1450D286DB0FD005C560E /* UserCD+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43B1450B286DB0FD005C560E /* UserCD+CoreDataProperties.swift */; };
 		43C4E0CD28672FC2007AD325 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 43C4E0CC28672FC2007AD325 /* SnapKit */; };
 		43C4E0CF28672FEF007AD325 /* UsersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C4E0CE28672FEF007AD325 /* UsersTableViewCell.swift */; };
 		43C4E0F928674125007AD325 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C4E0F828674125007AD325 /* ProfileViewController.swift */; };
@@ -20,8 +24,8 @@
 		43C4E1002869C6E1007AD325 /* Quicksand-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43C4E0FE2869C6E0007AD325 /* Quicksand-Regular.ttf */; };
 		43C4E1012869C6E1007AD325 /* Quicksand-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 43C4E0FF2869C6E1007AD325 /* Quicksand-Medium.ttf */; };
 		43C4E1042869C767007AD325 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C4E1032869C767007AD325 /* Font.swift */; };
-		43C4E108286AF413007AD325 /* PersistanceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C4E107286AF413007AD325 /* PersistanceService.swift */; };
-		43D85702286C2AA400C6DBEA /* NotebookOnline.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 43D85700286C2AA300C6DBEA /* NotebookOnline.xcdatamodeld */; };
+		43C4E108286AF413007AD325 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C4E107286AF413007AD325 /* StorageManager.swift */; };
+		43D85705286C3C2E00C6DBEA /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43D85704286C3C2E00C6DBEA /* FullImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,14 +37,18 @@
 		43166CB02865F8D3001F405C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		43166CB22865F8D3001F405C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		43166CBA2865FF51001F405C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		43492657286C604800936060 /* NotebookOnline.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotebookOnline.xcdatamodel; sourceTree = "<group>"; };
+		43B14505286D7F9E005C560E /* UserPicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPicture.swift; sourceTree = "<group>"; };
+		43B1450A286DB0FD005C560E /* UserCD+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserCD+CoreDataClass.swift"; sourceTree = "<group>"; };
+		43B1450B286DB0FD005C560E /* UserCD+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserCD+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		43C4E0CE28672FEF007AD325 /* UsersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTableViewCell.swift; sourceTree = "<group>"; };
 		43C4E0F828674125007AD325 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		43C4E0FB28674A69007AD325 /* APIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIController.swift; sourceTree = "<group>"; };
 		43C4E0FE2869C6E0007AD325 /* Quicksand-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Regular.ttf"; sourceTree = "<group>"; };
 		43C4E0FF2869C6E1007AD325 /* Quicksand-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Quicksand-Medium.ttf"; sourceTree = "<group>"; };
 		43C4E1032869C767007AD325 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
-		43C4E107286AF413007AD325 /* PersistanceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceService.swift; sourceTree = "<group>"; };
-		43D85701286C2AA300C6DBEA /* NotebookOnline.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotebookOnline.xcdatamodel; sourceTree = "<group>"; };
+		43C4E107286AF413007AD325 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		43D85704286C3C2E00C6DBEA /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,13 +82,16 @@
 		43166CA02865F8CC001F405C /* NotebookOnline */ = {
 			isa = PBXGroup;
 			children = (
+				43B1450A286DB0FD005C560E /* UserCD+CoreDataClass.swift */,
+				43B1450B286DB0FD005C560E /* UserCD+CoreDataProperties.swift */,
 				43C4E0F52867403D007AD325 /* App */,
 				43166CB92865FF3F001F405C /* Models */,
 				43C4E0FA2867424E007AD325 /* View Controllers */,
+				43D85703286C3C0A00C6DBEA /* FullImageScreen */,
 				43C4E105286AF1CF007AD325 /* Network */,
 				43C4E106286AF3D3007AD325 /* Database */,
 				43166CB22865F8D3001F405C /* Info.plist */,
-				43D85700286C2AA300C6DBEA /* NotebookOnline.xcdatamodeld */,
+				43492656286C604800936060 /* NotebookOnline.xcdatamodeld */,
 				43C4E1022869C6E8007AD325 /* Font */,
 			);
 			path = NotebookOnline;
@@ -90,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				43166CBA2865FF51001F405C /* User.swift */,
+				43B14505286D7F9E005C560E /* UserPicture.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -152,9 +164,17 @@
 		43C4E106286AF3D3007AD325 /* Database */ = {
 			isa = PBXGroup;
 			children = (
-				43C4E107286AF413007AD325 /* PersistanceService.swift */,
+				43C4E107286AF413007AD325 /* StorageManager.swift */,
 			);
 			path = Database;
+			sourceTree = "<group>";
+		};
+		43D85703286C3C0A00C6DBEA /* FullImageScreen */ = {
+			isa = PBXGroup;
+			children = (
+				43D85704286C3C2E00C6DBEA /* FullImageViewController.swift */,
+			);
+			path = FullImageScreen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,13 +258,17 @@
 				43166CA62865F8CC001F405C /* UsersViewController.swift in Sources */,
 				43166CA22865F8CC001F405C /* AppDelegate.swift in Sources */,
 				43166CBB2865FF51001F405C /* User.swift in Sources */,
+				43B14506286D7F9E005C560E /* UserPicture.swift in Sources */,
 				43C4E0FC28674A69007AD325 /* APIController.swift in Sources */,
 				43C4E1042869C767007AD325 /* Font.swift in Sources */,
+				43D85705286C3C2E00C6DBEA /* FullImageViewController.swift in Sources */,
 				43C4E0F928674125007AD325 /* ProfileViewController.swift in Sources */,
 				43C4E0CF28672FEF007AD325 /* UsersTableViewCell.swift in Sources */,
-				43D85702286C2AA400C6DBEA /* NotebookOnline.xcdatamodeld in Sources */,
+				43B1450D286DB0FD005C560E /* UserCD+CoreDataProperties.swift in Sources */,
+				43B1450C286DB0FD005C560E /* UserCD+CoreDataClass.swift in Sources */,
+				43492658286C604800936060 /* NotebookOnline.xcdatamodeld in Sources */,
 				43166CA42865F8CC001F405C /* SceneDelegate.swift in Sources */,
-				43C4E108286AF413007AD325 /* PersistanceService.swift in Sources */,
+				43C4E108286AF413007AD325 /* StorageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,12 +499,12 @@
 /* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
-		43D85700286C2AA300C6DBEA /* NotebookOnline.xcdatamodeld */ = {
+		43492656286C604800936060 /* NotebookOnline.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				43D85701286C2AA300C6DBEA /* NotebookOnline.xcdatamodel */,
+				43492657286C604800936060 /* NotebookOnline.xcdatamodel */,
 			);
-			currentVersion = 43D85701286C2AA300C6DBEA /* NotebookOnline.xcdatamodel */;
+			currentVersion = 43492657286C604800936060 /* NotebookOnline.xcdatamodel */;
 			path = NotebookOnline.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

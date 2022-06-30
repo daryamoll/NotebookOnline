@@ -1,38 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="21E258" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Birthday" representedClassName="Birthday" syncable="YES" codeGenerationType="class">
-        <attribute name="age" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="date" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="Location" representedClassName="Location" syncable="YES" codeGenerationType="class">
-        <relationship name="timezone" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Timezone"/>
-    </entity>
-    <entity name="Name" representedClassName="Name" syncable="YES">
-        <attribute name="first" optional="YES" attributeType="String"/>
-        <attribute name="last" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="Picture" representedClassName="Picture" syncable="YES">
-        <attribute name="large" optional="YES" attributeType="String"/>
-        <attribute name="medium" optional="YES" attributeType="String"/>
-        <attribute name="thumbnail" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="Timezone" representedClassName="Timezone" syncable="YES">
-        <attribute name="offset" optional="YES" attributeType="String"/>
-    </entity>
-    <entity name="User" representedClassName="User" syncable="YES">
-        <attribute name="emailOfUser" optional="YES" attributeType="String"/>
-        <attribute name="genderOfUser" optional="YES" attributeType="String"/>
-        <relationship name="dobOfUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Birthday"/>
-        <relationship name="locationOfUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location"/>
-        <relationship name="nameOfUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Name"/>
-        <relationship name="pictureOfUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Picture"/>
+    <entity name="UserCD" representedClassName="UserCD" syncable="YES">
+        <attribute name="age" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="birthdayDate" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <attribute name="email" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <attribute name="firstName" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <attribute name="gender" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <attribute name="largePicture" optional="YES" attributeType="URI"/>
+        <attribute name="lastName" attributeType="String" defaultValueString="&quot;&quot;"/>
+        <attribute name="timeOffset" attributeType="String" defaultValueString="&quot;&quot;"/>
     </entity>
     <elements>
-        <element name="User" positionX="-411.1558227539062" positionY="-125.8011474609375" width="128" height="133"/>
-        <element name="Name" positionX="-98.86529541015625" positionY="-217.1081085205078" width="128" height="59"/>
-        <element name="Picture" positionX="57.514404296875" positionY="-221.8145904541016" width="128" height="74"/>
-        <element name="Birthday" positionX="-249.3179931640625" positionY="-217.4223937988281" width="128" height="59"/>
-        <element name="Timezone" positionX="-280.9198608398438" positionY="49.50666809082031" width="128" height="44"/>
-        <element name="Location" positionX="77.34490966796875" positionY="45.23348999023438" width="128" height="44"/>
+        <element name="UserCD" positionX="-63" positionY="-18" width="128" height="149"/>
     </elements>
 </model>

@@ -20,9 +20,9 @@ struct Name: Decodable {
 }
 
 struct Picture: Decodable {
+//    let large: URL
+//    let medium: URL
     let large: URL
-    let medium: URL
-    let thumbnail: URL
 }
 
 struct Birthday: Decodable {
@@ -36,5 +36,4 @@ struct Location: Decodable {
 
 struct Timezone: Decodable {
     let offset: String
-    let description: String
 }

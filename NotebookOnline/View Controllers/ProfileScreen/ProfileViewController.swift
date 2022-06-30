@@ -25,21 +25,26 @@ class ProfileViewController: UIViewController {
     }
     
     private var stackView = UIStackView()
+    var user: User?
     
     private var userImage: UIImageView = {
        let image = UIImageView()
+        image.isUserInteractionEnabled = true
+//        image.backgroundColor = .red
         return image
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = Text.nameLabel
+        label.backgroundColor = .red
         label.font = Font.medium20.font
         return label
     }()
     
     private var nameLabelText: UILabel = {
         let label = UILabel()
+        label.backgroundColor = .red
         label.font = Font.regular20.font
         return label
     }()
@@ -99,33 +104,45 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-//        userImage.layer.cornerRadius = userImage.frame.size.width / 2
-//        userImage.clipsToBounds = true
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped))
+        userImage.addGestureRecognizer(gestureRecognizer)
         setupStackView()
         setConstraints()
     }
     
+    @objc private func imageTapped() {
+        let imageVC = FullImageViewController()
+        if let currentUser = user {
+            imageVC.setImage(user: currentUser)
+        }
+        self.navigationController?.pushViewController(imageVC, animated: true)
+    }
+    
     func configureLabels(user: User) {
         self.title = user.name.first + " " + user.name.last
-        
-        guard let imageData = try? Data(contentsOf: user.picture.large) else {
-            print("Error receving user's image")
-            return
-        }
-        userImage.image = UIImage(data: imageData)
 
         nameLabelText.text = user.name.first + " " + user.name.last
         
-        if user.gender == "male" {
-            genderLabelText.text = Gender.male
-        } else {
-            genderLabelText.text = Gender.female
+        switch user.gender {
+            case "male":
+                genderLabelText.text = Gender.male
+            case "female":
+                genderLabelText.text = Gender.female
+            default:
+                genderLabelText.text = " "
         }
-        
         
         dateOfBirthLabelText.text = setDateFormat(date: user.dob.date) + " (\(user.dob.age) y.o.)"
         emailLabelText.text = user.email
         timeLabelText.text = getUserCurrentTime(user.location.timezone.offset) + " (GMT \(user.location.timezone.offset))"
+        
+        guard let imageData = try? Data(contentsOf: user.picture.large) else {
+            print("222Error receving user's image")
+            return
+        }
+        userImage.image = UIImage(data: imageData)
+
+        
     }
         
     private func setDateFormat(date: String) -> String {
