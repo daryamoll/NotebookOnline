@@ -18,8 +18,6 @@ class StorageManager {
             user.gender = item.gender
             user.firstName = item.name.first
             user.lastName = item.name.last
-//            user.largePicture = item.picture.large
-//            user.mediumPicture = item.picture.medium
             user.largePicture = item.picture.large
             user.email = item.email
             user.birthdayDate = item.dob.date
@@ -69,12 +67,12 @@ class StorageManager {
         
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "UserCD")
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-
+        
         do {
             try context.execute(deleteRequest)
-        } catch let error {
+        } catch {
             print("error")
         }
     }
-
+    
 }

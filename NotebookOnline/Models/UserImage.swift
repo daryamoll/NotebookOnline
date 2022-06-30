@@ -1,10 +1,10 @@
 
 import Foundation
 
-final class UserPicture {
+final class UserImage {
 
     var id: String {
-        return "\(imageURL.absoluteString)"
+        return "\(user.name.last)|\(imageURL.absoluteString)"
     }
 
     let user: User

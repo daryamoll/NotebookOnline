@@ -3,6 +3,10 @@ import UIKit
 
 class ProfileViewController: UIViewController {
     
+    private var stackView = UIStackView()
+    var user: User?
+    let userImagesLoader = UserImagesLoader()
+    
     private enum Constants {
         static let userImageTopOffset = 10
         static let userImageSize = 250
@@ -24,27 +28,33 @@ class ProfileViewController: UIViewController {
         static let female = "\u{2640}"
     }
     
-    private var stackView = UIStackView()
-    var user: User?
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.contentSize = CGSize(width: 400, height: 800)
+        return scrollView
+    }()
+    
+    private let backgroundView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
     
     private var userImage: UIImageView = {
        let image = UIImageView()
         image.isUserInteractionEnabled = true
-//        image.backgroundColor = .red
         return image
     }()
     
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.text = Text.nameLabel
-        label.backgroundColor = .red
         label.font = Font.medium20.font
         return label
     }()
     
     private var nameLabelText: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
         label.font = Font.regular20.font
         return label
     }()
@@ -136,13 +146,14 @@ class ProfileViewController: UIViewController {
         emailLabelText.text = user.email
         timeLabelText.text = getUserCurrentTime(user.location.timezone.offset) + " (GMT \(user.location.timezone.offset))"
         
-        guard let imageData = try? Data(contentsOf: user.picture.large) else {
-            print("222Error receving user's image")
-            return
+        userImagesLoader.loadUserImage(userImage: UserImage(user: user, imageURL: user.picture.large)) { result in
+            switch result {
+                case .success(let image):
+                    self.userImage.image = image
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
         }
-        userImage.image = UIImage(data: imageData)
-
-        
     }
         
     private func setDateFormat(date: String) -> String {
@@ -212,7 +223,24 @@ private extension ProfileViewController {
 //MARK: - Constraints
 private extension ProfileViewController {
     func setConstraints() {
-        view.addSubview(userImage)
+        
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.centerX.equalTo(view.snp.centerX)
+            make.width.equalTo(view.snp.width)
+            make.top.equalTo(view.snp.top)
+            make.bottom.equalTo(view.snp.bottom)
+        }
+        
+        scrollView.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { make in
+            make.centerX.equalTo(scrollView.snp.centerX)
+            make.width.equalTo(scrollView.snp.width)
+            make.top.equalTo(scrollView.snp.top)
+            make.bottom.equalTo(scrollView.snp.bottom)
+        }
+        
+        backgroundView.addSubview(userImage)
         userImage.snp.makeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide).offset(Constants.userImageTopOffset)
             make.centerX.equalTo(self.view.snp.centerX)
@@ -220,7 +248,7 @@ private extension ProfileViewController {
             make.width.equalTo(Constants.userImageSize)
         }
         
-        view.addSubview(stackView)
+        backgroundView.addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.top.equalTo(userImage.snp.bottom).offset(Constants.stackViewTopOffset)
             make.leading.equalToSuperview().offset(Constants.stackViewHorisontalOffset)

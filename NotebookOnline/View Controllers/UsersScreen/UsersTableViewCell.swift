@@ -3,6 +3,8 @@ import UIKit
 
 class UsersTableViewCell: UITableViewCell {
     
+    let userImagesLoader = UserImagesLoader()
+    
     private enum Constants {
         static let userImageLeadingOffset = 15
         static let userImageSize = 40
@@ -13,7 +15,6 @@ class UsersTableViewCell: UITableViewCell {
     
     private var userImage: UIImageView = {
         let image = UIImageView()
-//        image.clipsToBounds = true
         return image
     }()
     
@@ -40,10 +41,14 @@ class UsersTableViewCell: UITableViewCell {
     func configureCell(user: User) {
         nameLabel.text = user.name.first + " " + user.name.last
         
-        guard let imageData = try? Data(contentsOf: user.picture.large) else {
-            return
+        userImagesLoader.loadUserImage(userImage: UserImage(user: user, imageURL: user.picture.large)) { result in
+            switch result {
+                case .success(let image):
+                    self.userImage.image = image
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
         }
-        userImage.image = UIImage(data: imageData)
     }
 }
 

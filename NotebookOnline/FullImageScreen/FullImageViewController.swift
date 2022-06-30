@@ -2,6 +2,14 @@
 import UIKit
 
 class FullImageViewController: UIViewController {
+    
+    let userImagesLoader = UserImagesLoader()
+    
+    private enum Constants {
+        static let userImageHorisontalOffset = 30
+        static let userImageVerticalOffset = 150
+    }
+    
     private var userImage: UIImageView = {
        let image = UIImageView()
         return image
@@ -10,20 +18,19 @@ class FullImageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-//        userImage.layer.cornerRadius = userImage.frame.size.width / 2
-//        userImage.clipsToBounds = true
         setConstraints()
     }
     
     func setImage(user: User) {
-        guard let imageData = try? Data(contentsOf: user.picture.large) else {
-            print("Error receving user's image")
-            return
+        userImagesLoader.loadUserImage(userImage: UserImage(user: user, imageURL: user.picture.large)) { result in
+            switch result {
+                case .success(let image):
+                    self.userImage.image = image
+                case .failure(let error):
+                    print(error.localizedDescription)
+            }
         }
-        userImage.image = UIImage(data: imageData)
-        
-    }
-    
+    }    
 }
 
 private extension FullImageViewController {
@@ -32,9 +39,10 @@ private extension FullImageViewController {
         userImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-
+            make.leading.equalToSuperview().offset(Constants.userImageHorisontalOffset)
+            make.trailing.equalToSuperview().offset(-Constants.userImageHorisontalOffset)
+            make.top.equalToSuperview().offset(Constants.userImageVerticalOffset)
+            make.bottom.equalToSuperview().offset(-Constants.userImageVerticalOffset)
         }
     }
 }

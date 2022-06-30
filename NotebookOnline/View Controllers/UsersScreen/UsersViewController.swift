@@ -12,7 +12,7 @@ class UsersViewController: UIViewController {
         
     }
     
-    let apiController = APIController()
+    let apiController = NetworkService()
     
     private var tableView: UITableView = {
         let tableView = UITableView()
@@ -41,13 +41,6 @@ class UsersViewController: UIViewController {
         }
     }
     
-    
-//    { (error) in
-//        if let error = error {
-//            print("Error performing task: \(error.localizedDescription)")
-//        }
-//            self.tableView.reloadData()
-//    }
     
     func setLayout() {
         view.addSubview(tableView)
