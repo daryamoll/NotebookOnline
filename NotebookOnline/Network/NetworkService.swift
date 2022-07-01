@@ -5,7 +5,7 @@ class NetworkService {
     
     var users: [User] = []
     
-    let baseURL = "https://randomuser.me/api/?results=20"
+    let baseURL = "https://randomuser.me/api/?results=50"
 
     func getUsers(completion: @escaping (Result<Data, Error>) -> Void) {
         
@@ -23,9 +23,8 @@ class NetworkService {
                     completion(.success(data))
                     do {
                         let newUsers = try JSONDecoder().decode(UserResults.self, from: data)
-                        self.users = newUsers.results
-                        
                         StorageManager.shared.delete()
+                        self.users = newUsers.results
                         StorageManager.shared.saveUsers(users: self.users)
                     } catch {
                         print("Error decoding  users: \(error.localizedDescription)")

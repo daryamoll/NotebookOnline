@@ -68,6 +68,5 @@ private extension UsersTableViewCell {
             make.leading.equalTo(userImage.snp.trailing).offset(Constants.nameLabelHorisontalOffset)
             make.trailing.equalToSuperview().offset(-Constants.nameLabelHorisontalOffset)
         }
-        
     }
 }

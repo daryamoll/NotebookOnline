@@ -7,13 +7,13 @@ protocol ImagesCacheManageProtocol {
 }
 
 final class ImagesCacheManager: ImagesCacheManageProtocol {
-
+    
     private let cache = NSCache<NSString, UIImage>()
-
+    
     func setObject(image: UIImage, key: String) {
         cache.setObject(image, forKey: NSString(string: key))
     }
-
+    
     func getObject(key: String) -> UIImage? {
         return cache.object(forKey: NSString(string: key))
     }

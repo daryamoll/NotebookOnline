@@ -87,8 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				43B14512286DC3E3005C560E /* Managers */,
-				43B1450A286DB0FD005C560E /* UserCD+CoreDataClass.swift */,
-				43B1450B286DB0FD005C560E /* UserCD+CoreDataProperties.swift */,
 				43C4E0F52867403D007AD325 /* App */,
 				43166CB92865FF3F001F405C /* Models */,
 				43C4E0FA2867424E007AD325 /* View Controllers */,
@@ -178,6 +176,8 @@
 		43C4E106286AF3D3007AD325 /* Database */ = {
 			isa = PBXGroup;
 			children = (
+				43B1450A286DB0FD005C560E /* UserCD+CoreDataClass.swift */,
+				43B1450B286DB0FD005C560E /* UserCD+CoreDataProperties.swift */,
 				43C4E107286AF413007AD325 /* StorageManager.swift */,
 			);
 			path = Database;

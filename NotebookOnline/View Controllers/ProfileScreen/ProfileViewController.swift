@@ -5,7 +5,7 @@ class ProfileViewController: UIViewController {
     
     private var stackView = UIStackView()
     var user: User?
-    let userImagesLoader = UserImagesLoader()
+    private let userImagesLoader = UserImagesLoader()
     
     private enum Constants {
         static let userImageTopOffset = 10
@@ -13,6 +13,10 @@ class ProfileViewController: UIViewController {
         
         static let stackViewTopOffset = 20
         static let stackViewHorisontalOffset = 40
+        static let stackViewButtomOffset = 10
+        
+        static let scrollViewWidth = 400
+        static let scrollViewHeight = 800
     }
     
     private enum Text {
@@ -30,13 +34,12 @@ class ProfileViewController: UIViewController {
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
-        scrollView.contentSize = CGSize(width: 400, height: 800)
+        scrollView.contentSize = CGSize(width: Constants.scrollViewWidth, height: Constants.scrollViewHeight)
         return scrollView
     }()
     
     private let backgroundView: UIView = {
         let view = UIView()
-        view.backgroundColor = .red
         return view
     }()
     
@@ -95,6 +98,7 @@ class ProfileViewController: UIViewController {
     private var emailLabelText: UILabel = {
         let label = UILabel()
         label.font = Font.regular20.font
+        label.numberOfLines = 2
         return label
     }()
 
@@ -242,7 +246,7 @@ private extension ProfileViewController {
         
         backgroundView.addSubview(userImage)
         userImage.snp.makeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide).offset(Constants.userImageTopOffset)
+            make.top.equalToSuperview().offset(Constants.userImageTopOffset)
             make.centerX.equalTo(self.view.snp.centerX)
             make.height.equalTo(Constants.userImageSize)
             make.width.equalTo(Constants.userImageSize)
@@ -253,7 +257,7 @@ private extension ProfileViewController {
             make.top.equalTo(userImage.snp.bottom).offset(Constants.stackViewTopOffset)
             make.leading.equalToSuperview().offset(Constants.stackViewHorisontalOffset)
             make.trailing.equalToSuperview().offset(-Constants.stackViewHorisontalOffset)
-            make.bottom.lessThanOrEqualToSuperview()
+            make.bottom.lessThanOrEqualToSuperview().offset(-Constants.stackViewTopOffset)
         }
     }
 }

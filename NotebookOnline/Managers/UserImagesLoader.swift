@@ -2,7 +2,7 @@
 import UIKit
 
 final class UserImagesLoader {
-
+    
     private let imagesCacheManager = ImagesCacheManager()
     private let networkService = NetworkService()
     

@@ -20,8 +20,6 @@ struct Name: Decodable {
 }
 
 struct Picture: Decodable {
-//    let large: URL
-//    let medium: URL
     let large: URL
 }
 

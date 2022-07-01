@@ -4,14 +4,6 @@ import SnapKit
 
 class UsersViewController: UIViewController {
     
-    private enum Constants {
-        
-    }
-    
-    private enum Text {
-        
-    }
-    
     let apiController = NetworkService()
     
     private var tableView: UITableView = {
@@ -22,32 +14,36 @@ class UsersViewController: UIViewController {
         return tableView
     }()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
         tableView.delegate = self
         self.title = "Users"
-        setLayout()
+        
         apiController.getUsers { result in
             DispatchQueue.main.async {
                 switch result {
-                    case .success(let data):
+                    case .success(_):
                         self.tableView.reloadData()
-                    case .failure(let error):
+                    case .failure(_):
                         self.tableView.reloadData()
                 }
             }
         }
+        setLayout()
     }
     
+    @objc func loadTable() {
+        self.tableView.reloadData()
+    }
     
     func setLayout() {
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.top.bottom.leading.trailing.equalToSuperview()
         }
-
     }
 }
 
@@ -58,14 +54,11 @@ extension UsersViewController: UITableViewDataSource {
         return apiController.users.count
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,  cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UsersTableViewCell
         let user = apiController.users[indexPath.row]
         cell.configureCell(user: user)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     }
 }
 
@@ -74,7 +67,6 @@ extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let profileViewController = ProfileViewController()
         let user = apiController.users[indexPath.row]
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!\(user)")
         profileViewController.user = user
         profileViewController.configureLabels(user: user)
         navigationController?.pushViewController(profileViewController, animated: true)
