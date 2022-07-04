@@ -17,6 +17,8 @@ class ProfileViewController: UIViewController {
         
         static let scrollViewWidth = 400
         static let scrollViewHeight = 800
+        
+        static let minutesInDay = 1440
     }
     
     private enum Text {
@@ -44,7 +46,7 @@ class ProfileViewController: UIViewController {
     }()
     
     private var userImage: UIImageView = {
-       let image = UIImageView()
+        let image = UIImageView()
         image.isUserInteractionEnabled = true
         return image
     }()
@@ -101,7 +103,7 @@ class ProfileViewController: UIViewController {
         label.numberOfLines = 2
         return label
     }()
-
+    
     private var timeLabel: UILabel = {
         let label = UILabel()
         label.text = Text.timeLabel
@@ -131,10 +133,14 @@ class ProfileViewController: UIViewController {
         }
         self.navigationController?.pushViewController(imageVC, animated: true)
     }
-    
+}
+
+// MARK: - Configure labels
+
+extension ProfileViewController {
     func configureLabels(user: User) {
         self.title = user.name.first + " " + user.name.last
-
+        
         nameLabelText.text = user.name.first + " " + user.name.last
         
         switch user.gender {
@@ -159,8 +165,12 @@ class ProfileViewController: UIViewController {
             }
         }
     }
-        
-    private func setDateFormat(date: String) -> String {
+}
+
+//MARK: - Set date format
+private extension ProfileViewController {
+    
+    func setDateFormat(date: String) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         guard let backendDate = dateFormatter.date(from: date) else { return "" }
@@ -169,22 +179,6 @@ class ProfileViewController: UIViewController {
         formatDate.dateFormat = "dd.MM.yyyy"
         let date = formatDate.string(from: backendDate)
         return date
-    }
-    
-    private func setupStackView() {
-        stackView = UIStackView(arrangedSubviews: [nameLabel,
-                                                   nameLabelText,
-                                                   genderLabel,
-                                                   genderLabelText,
-                                                   dateOfBirthLabel,
-                                                   dateOfBirthLabelText,
-                                                   emailLabel,
-                                                   emailLabelText,
-                                                   timeLabel,
-                                                   timeLabelText])
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        stackView.distribution = .fillProportionally
     }
 }
 
@@ -218,16 +212,32 @@ private extension ProfileViewController {
         let gmtCurrentTime = getGMTCurrentTime()
         let gmtCurrentTimeInMinutes = hhmmToMinutes(gmtCurrentTime)
         let userTimeOffsetInMinutes = hhmmToMinutes(userTimeOffset)
-        let userCurrentTimeInMinutes = abs(gmtCurrentTimeInMinutes + userTimeOffsetInMinutes)
+        let userCurrentTimeInMinutes = abs((gmtCurrentTimeInMinutes + userTimeOffsetInMinutes + Constants.minutesInDay) % Constants.minutesInDay)
         let userCurrentTime = minutesToHourMinute(userCurrentTimeInMinutes)
         return userCurrentTime
     }
 }
 
-//MARK: - Constraints
+//MARK: - Setup stackView / constraints
 private extension ProfileViewController {
+    
+    func setupStackView() {
+        stackView = UIStackView(arrangedSubviews: [nameLabel,
+                                                   nameLabelText,
+                                                   genderLabel,
+                                                   genderLabelText,
+                                                   dateOfBirthLabel,
+                                                   dateOfBirthLabelText,
+                                                   emailLabel,
+                                                   emailLabelText,
+                                                   timeLabel,
+                                                   timeLabelText])
+        stackView.axis = .vertical
+        stackView.spacing = 10
+        stackView.distribution = .fillProportionally
+    }
+    
     func setConstraints() {
-        
         view.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
             make.centerX.equalTo(view.snp.centerX)

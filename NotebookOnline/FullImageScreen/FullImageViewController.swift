@@ -7,7 +7,7 @@ class FullImageViewController: UIViewController {
     
     private enum Constants {
         static let userImageHorisontalOffset = 30
-        static let userImageVerticalOffset = 150
+        static let userImageSize = 300
     }
     
     private var userImage: UIImageView = {
@@ -20,7 +20,10 @@ class FullImageViewController: UIViewController {
         view.backgroundColor = .white
         setConstraints()
     }
-    
+}
+
+// MARK: - Set image
+extension FullImageViewController {
     func setImage(user: User) {
         userImagesLoader.loadUserImage(userImage: UserImage(user: user, imageURL: user.picture.large)) { result in
             switch result {
@@ -30,19 +33,18 @@ class FullImageViewController: UIViewController {
                     print(error.localizedDescription)
             }
         }
-    }    
+    }
 }
 
+// MARK: - Set constraints
 private extension FullImageViewController {
     func setConstraints() {
         view.addSubview(userImage)
         userImage.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(Constants.userImageHorisontalOffset)
-            make.trailing.equalToSuperview().offset(-Constants.userImageHorisontalOffset)
-            make.top.equalToSuperview().offset(Constants.userImageVerticalOffset)
-            make.bottom.equalToSuperview().offset(-Constants.userImageVerticalOffset)
+            make.height.equalTo(Constants.userImageSize)
+            make.width.equalTo(Constants.userImageSize)
         }
     }
 }

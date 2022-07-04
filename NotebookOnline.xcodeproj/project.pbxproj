@@ -86,16 +86,14 @@
 		43166CA02865F8CC001F405C /* NotebookOnline */ = {
 			isa = PBXGroup;
 			children = (
-				43B14512286DC3E3005C560E /* Managers */,
 				43C4E0F52867403D007AD325 /* App */,
+				43B14512286DC3E3005C560E /* Managers */,
 				43166CB92865FF3F001F405C /* Models */,
 				43C4E0FA2867424E007AD325 /* View Controllers */,
 				43D85703286C3C0A00C6DBEA /* FullImageScreen */,
 				43C4E105286AF1CF007AD325 /* Network */,
 				43C4E106286AF3D3007AD325 /* Database */,
 				43166CB22865F8D3001F405C /* Info.plist */,
-				43492656286C604800936060 /* NotebookOnline.xcdatamodeld */,
-				43C4E1022869C6E8007AD325 /* Font */,
 			);
 			path = NotebookOnline;
 			sourceTree = "<group>";
@@ -134,6 +132,7 @@
 				43166CA32865F8CC001F405C /* SceneDelegate.swift */,
 				43166CAF2865F8D3001F405C /* LaunchScreen.storyboard */,
 				43166CAD2865F8D3001F405C /* Assets.xcassets */,
+				43C4E1022869C6E8007AD325 /* Font */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -179,6 +178,7 @@
 				43B1450A286DB0FD005C560E /* UserCD+CoreDataClass.swift */,
 				43B1450B286DB0FD005C560E /* UserCD+CoreDataProperties.swift */,
 				43C4E107286AF413007AD325 /* StorageManager.swift */,
+				43492656286C604800936060 /* NotebookOnline.xcdatamodeld */,
 			);
 			path = Database;
 			sourceTree = "<group>";

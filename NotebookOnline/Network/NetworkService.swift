@@ -5,7 +5,7 @@ class NetworkService {
     
     var users: [User] = []
     
-    let baseURL = "https://randomuser.me/api/?results=50"
+    let baseURL = "https://randomuser.me/api/?results=1000"
 
     func getUsers(completion: @escaping (Result<Data, Error>) -> Void) {
         

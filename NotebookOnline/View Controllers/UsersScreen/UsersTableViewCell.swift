@@ -23,7 +23,7 @@ class UsersTableViewCell: UITableViewCell {
         label.font = Font.regular20.font
         return label
     }()
-        
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints()
@@ -32,11 +32,10 @@ class UsersTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        userImage.layer.cornerRadius = userImage.frame.width / 2
-    }
+}
+
+// MARK: - Configure cell
+extension UsersTableViewCell {
     
     func configureCell(user: User) {
         nameLabel.text = user.name.first + " " + user.name.last
@@ -52,6 +51,7 @@ class UsersTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: - Set constraints
 private extension UsersTableViewCell {
     func setConstraints() {
         self.addSubview(userImage)
